@@ -1,7 +1,10 @@
 // 四面多字阵列方案 - 基于三面模型扩展
 // 支持任意长度文本，围绕Y轴将360度分成四个方向，每个方向间隔75度
-// 作者: Claude AI
-// 日期: 2023年11月
+// 作者: AIOTVR
+// 日期: 2025年6月
+// 许可证: MIT License
+// 项目地址: https://github.com/zhouyoukang/multi-directional-chinese-characters
+
 $fn = 20; // 降低平滑度以提高性能
 
 /* [性能设置] */
@@ -57,8 +60,34 @@ text3 = "万事如意";
 // 第四面文字内容
 text4 = "阖家幸福";
 
-// 字体
-font = "华文楷体";
+// 字体选择 (0=Noto Sans SC, 1=Noto Serif SC, 2=Noto Sans SC Bold, 3=Noto Sans SC:style=Light, 
+// 4=Noto Sans Mono CJK SC, 5=Roboto, 6=Roboto Italic, 7=Open Sans, 8=Liberation Sans, 
+// 9=DejaVu Sans, 10=DejaVu Serif, 11=Ubuntu, 12=Droid Sans)
+font_selection = 0;
+// 自定义字体 (如果上面选择的字体不可用，可以在这里输入自定义字体名称)
+custom_font = "";
+
+// 获取选择的字体
+function get_selected_font() =
+    custom_font != "" ? custom_font :
+    (font_selection == 0) ? "Noto Sans SC" :
+    (font_selection == 1) ? "Noto Serif SC" :
+    (font_selection == 2) ? "Noto Sans SC:style=Bold" :
+    (font_selection == 3) ? "Noto Sans SC:style=Light" :
+    (font_selection == 4) ? "Noto Sans Mono CJK SC" :
+    (font_selection == 5) ? "Roboto" :
+    (font_selection == 6) ? "Roboto:style=Italic" :
+    (font_selection == 7) ? "Open Sans" :
+    (font_selection == 8) ? "Liberation Sans" :
+    (font_selection == 9) ? "DejaVu Sans" :
+    (font_selection == 10) ? "DejaVu Serif" :
+    (font_selection == 11) ? "Ubuntu" :
+    (font_selection == 12) ? "Droid Sans" :
+    "Noto Sans SC"; // 默认值
+
+// 实际使用的字体
+font = get_selected_font();
+
 // 字体大小
 char_size = 16;
 // 字间距 (字体大小的倍数)
